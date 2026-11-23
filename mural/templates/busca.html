@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Buscar objetos | Achei NES{% endblock %}
+
+{% block content %}
+    <h1>Buscar objetos</h1>
+
+    <form method="get" class="formulario busca">
+        {% for campo in form %}
+            <div class="campo">
+                {{ campo.label_tag }}
+                {{ campo }}
+                {{ campo.errors }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="botao">Buscar</button>
+    </form>
+
+    {% if lista_itens is not None %}
+        <h2>Resultados</h2>
+        {% include "_lista_itens.html" %}
+    {% endif %}
+{% endblock %}

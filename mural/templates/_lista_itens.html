@@ -1,0 +1,22 @@
+{% if lista_itens %}
+    <ul class="grade">
+        {% for item in lista_itens %}
+            <li class="cartao">
+                <span class="etiqueta">{{ item.categoria.nome }}</span>
+
+                <h3>{{ item.nome|upper }}</h3>
+
+                <p>Encontrado em: {{ item.local_encontrado }}</p>
+
+                <a class="botao"
+                   href="{% url 'mural:detalhe' item.id %}">
+                    Ver detalhes
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p class="aviso">
+        Nenhum objeto encontrado nesta consulta.
+    </p>
+{% endif %}

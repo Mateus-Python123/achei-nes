@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ titulo_categoria }} | Achei NES{% endblock %}
+
+{% block content %}
+    <h1>Categoria: {{ titulo_categoria }}</h1>
+
+    <p>Objetos encontrados nesta categoria.</p>
+
+    {% include "_lista_itens.html" %}
+
+    <p>
+        <a href="{% url 'mural:home' %}">
+            Voltar a todos os objetos
+        </a>
+    </p>
+{% endblock %}

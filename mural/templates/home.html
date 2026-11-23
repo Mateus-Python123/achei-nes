@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Objetos encontrados | Achei NES{% endblock %}
+
+{% block content %}
+    <section class="introducao">
+        <p class="etiqueta">Mural de achados e perdidos</p>
+        <h1>Encontrou o que estava procurando?</h1>
+        <p>
+            Consulte os objetos encontrados e veja onde retirá-los.
+        </p>
+        <p>
+            <a class="botao" href="{% url 'mural:item_criar' %}">Cadastrar objeto encontrado</a>
+            <a href="{% url 'mural:busca' %}">Buscar objetos</a>
+        </p>
+    </section>
+
+    <section>
+        <h2>Consultar por categoria</h2>
+
+        <ul class="categorias">
+            {% for categoria in categorias %}
+                <li>
+                    <strong>{{ categoria.nome }}</strong>
+
+                    <a href="{% url 'mural:categoria_slug' categoria.slug %}">
+                        Ver objetos
+                    </a>
+
+                    <a href="{% url 'mural:categoria_nome' categoria.nome %}">
+                        Consultar pelo nome
+                    </a>
+                </li>
+            {% empty %}
+                <li>Nenhuma categoria cadastrada.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Todos os objetos</h2>
+        {% include "_lista_itens.html" %}
+    </section>
+{% endblock %}

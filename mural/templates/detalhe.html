@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.nome }} | Achei NES{% endblock %}
+
+{% block content %}
+    <article class="painel">
+        <p class="etiqueta">{{ item.categoria.nome }}</p>
+        <h1>{{ item.nome }}</h1>
+
+        <p>{{ item.descricao }}</p>
+
+        <dl>
+            <dt>Local encontrado</dt>
+            <dd>{{ item.local_encontrado }}</dd>
+
+            <dt>Local de retirada</dt>
+            <dd>{{ item.local_retirada }}</dd>
+        </dl>
+
+        <a href="{% url 'mural:categoria_slug' item.categoria.slug %}">
+            Ver outros objetos desta categoria
+        </a>
+
+        <p>
+            <a href="{% url 'mural:home' %}">Voltar ao mural</a>
+        </p>
+    </article>
+{% endblock %}

@@ -1,0 +1,57 @@
+ACHEI NES
+
+Mural de objetos encontrados na escola.
+
+INTEGRANTES
+Emanuel Almeida
+Mateus Perim
+Micael Souza
+
+EXECUÇÃO NO WINDOWS
+
+Abra o terminal na pasta que contém manage.py.
+
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe manage.py migrate
+.\.venv\Scripts\python.exe manage.py runserver
+
+Página inicial:
+http://127.0.0.1:8000/
+
+O banco incluído contém dados fictícios para demonstração.
+
+Para criar um administrador próprio, pare o servidor com Ctrl+C:
+
+.\.venv\Scripts\python.exe manage.py createsuperuser
+
+Depois, execute novamente runserver.
+
+ROTAS PRINCIPAIS
+
+/ — página inicial
+/itens/<id>/ — detalhes por ID inteiro
+/categorias/<slug>/ — filtro pelo slug
+/categoria/<nome>/ — filtro pelo nome textual
+/itens/novo/ — formulário para cadastrar objeto (GET mostra, POST salva)
+/busca/ — busca por termo e categoria (GET)
+/admin/ — administração
+
+As páginas públicas consultam e também cadastram objetos pelo formulário.
+O Django Admin continua disponível para gerenciar categorias e itens.
+
+TESTES UNITÁRIOS
+
+.\.venv\Scripts\python.exe manage.py test
+
+(Se o requirements.txt mudou, rode o pip install -r requirements.txt antes.)
+
+ARQUIVOS IMPORTANTES
+
+mural/models.py — estrutura dos dados
+mural/forms.py — formulários (ItemForm, BuscaForm)
+mural/tests.py — testes unitários
+mural/urls.py — rotas e conversores
+mural/views.py — consultas, contexto e respostas
+mural/templates/ — apresentação dos dados
+mural/static/mural/estilo.css — aparência das páginas

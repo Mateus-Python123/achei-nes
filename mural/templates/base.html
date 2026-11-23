@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Achei NES{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'mural/estilo.css' %}">
+</head>
+<body>
+    <header class="topo">
+        <a class="marca" href="{% url 'mural:home' %}">
+            Achei NES
+        </a>
+
+        <nav aria-label="Menu principal">
+            <a href="{% url 'mural:home' %}">Todos os objetos</a>
+            <a href="{% url 'mural:busca' %}">Buscar</a>
+            <a href="{% url 'mural:item_criar' %}">Cadastrar objeto</a>
+            <a href="{% url 'admin:index' %}">Administração</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% if messages %}
+            <ul class="mensagens">
+                {% for message in messages %}
+                    <li class="mensagem {{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        Achei NES — objetos encontrados na escola.
+    </footer>
+</body>
+</html>
